@@ -134,7 +134,7 @@
       mounted: function() {
         this.setupMedia()
       },
-      beforeDestroy: function() {
+      beforeUnmount: function() {
         this.stop()
       },
       methods: {
