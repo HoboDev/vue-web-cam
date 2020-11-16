@@ -1,42 +1,41 @@
 var path = require("path");
 var webpack = require("webpack");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
-const { version } = require("../package.json");
+const {
+  version
+} = require("../package.json");
 
 module.exports = {
   mode: "production",
-  entry: "./src/index.js",
+  entry: "./src/index.ts",
   output: {
     path: path.resolve(__dirname, "../dist"),
     publicPath: "/dist/",
-    filename: "index.js",
+    filename: "index.ts",
     library: "vue-web-cam",
     libraryTarget: "umd"
   },
   module: {
-    rules: [
-      {
-        test: /\.vue$/,
-        loader: "vue-loader",
-        options: {
-          loaders: {
-            scss: "vue-style-loader!css-loader!sass-loader",
-            sass: "vue-style-loader!css-loader!sass-loader?indentedSyntax"
-          }
+    rules: [{
+      test: /\.vue$/,
+      loader: "vue-loader",
+      options: {
+        loaders: {
+          scss: "vue-style-loader!css-loader!sass-loader",
+          sass: "vue-style-loader!css-loader!sass-loader?indentedSyntax"
         }
-      },
-      {
-        test: /\.js$/,
-        loader: "babel-loader",
-        exclude: /node_modules/
       }
-    ]
+    }, {
+      test: /\.js$/,
+      loader: "babel-loader",
+      exclude: /node_modules/
+    }]
   },
   externals: {
     vue: "vue"
   },
   resolve: {
-    extensions: [".js", ".vue"],
+    extensions: [".ts", ".js", ".vue"],
     alias: {
       vue: "vue/dist/vue.esm.js"
     }
